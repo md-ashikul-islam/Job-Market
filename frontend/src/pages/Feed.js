@@ -34,7 +34,7 @@ console.log(post);
   return (
     <Grid container spacing={2} sx={{ margin: "2%" }}>
       <Grid item xs={12} sx={12} md={12} lg={12}>
-      <Button sx={{ margin: "1% 2%" }} variant="outlined">
+      <Button sx={{backgroundColor:"white", opacity: "50%" }} variant="outlined">
             <Link to="/">Home</Link>
           </Button>
         <Box>
@@ -47,7 +47,7 @@ console.log(post);
               ),
             }}
             placeholder="Search..."
-            sx={{ width: "75%", padding: "2% auto" }}
+            sx={{ width: "75%", padding: "2% auto",backgroundColor:'whitesmoke',opacity:"50%" }}
             fullWidth
             onChange={(e) => setQuery(e.target.value)}
           />

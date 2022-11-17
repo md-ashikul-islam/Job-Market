@@ -29,7 +29,7 @@ export default function Home() {
             <Tab label="Create Post" value="1" />
           </TabList>
         </Box>
-        <TabPanel value="1"><Create /></TabPanel>
+        <TabPanel value="1" sx={{opacity:"70%"}}><Create /></TabPanel>
       </TabContext>
     </Box>
     </>

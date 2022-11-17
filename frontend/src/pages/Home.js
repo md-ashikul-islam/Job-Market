@@ -25,6 +25,18 @@ const Home = () => {
             </Link>
             </Button>
           </li>
+          <li>
+          <Button sx={{ margin:"2% 3%"}} variant="outlined">
+            <Link to="/employee/feed">
+              Log In To Access All Features
+            </Link>
+            </Button>
+            <Button sx={{ margin:"2% 3%"}} variant="outlined">
+            <Link to="/employee/feed">
+              First Time? Sign Up
+            </Link>
+            </Button>
+          </li>
         </ul>
       </div>
     </div>
