@@ -32,7 +32,7 @@ const Home = () => {
             </Link>
             </Button>
             <Button sx={{ margin:"2% 3%"}} variant="outlined">
-            <Link to="/employee/feed">
+            <Link to="/registration">
               First Time? Sign Up
             </Link>
             </Button>

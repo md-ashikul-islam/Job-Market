@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home, Feed, Dashboard, Create,Login } from "./pages"
+import Registration from "./pages/Registration";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           </Route>
           <Route path="/employee/feed" element={<Feed />}/>
           <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
       </Routes>
     </BrowserRouter>
   );
