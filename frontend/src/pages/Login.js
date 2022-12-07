@@ -14,11 +14,14 @@ const Login = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    
   }
 
   return (
     <div className="Login">
+      
       <Form onSubmit={handleSubmit}>
+      <h1>Log In </h1> <br></br>
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control

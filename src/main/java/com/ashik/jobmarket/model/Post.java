@@ -1,10 +1,8 @@
 package com.ashik.jobmarket.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
 
-@Document(collection = "JobPost")
 public class Post {
     private String profile;
 

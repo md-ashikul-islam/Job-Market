@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-
+import {signUp} from "../services/user-sevice"
 import 'react-toastify/dist/ReactToastify.css';
 import {
   MDBBtn,
@@ -51,11 +51,26 @@ function Registration() {
       .then((response) => console.log(response))
       .then((data) => {
         console.log("Success:", data);
+        
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-      navigate('/login');
+      toast.success('👌 Registration Successful!', {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      
+      setTimeout(() => {
+        navigate("/login")
+   }, 1600);
+      
     }
     catch(err){
       toast.error(getError(err));
