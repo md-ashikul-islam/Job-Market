@@ -5,6 +5,7 @@ import com.ashik.jobmarket.model.User;
 import com.ashik.jobmarket.payloads.UserDTO;
 import com.ashik.jobmarket.repository.UserRepository;
 import com.ashik.jobmarket.services.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private ModelMapper modelMapper;
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         User user =this.dtoToUser(userDTO);
@@ -59,22 +62,12 @@ public class UserServiceImpl implements UserService {
     }
 
     private User dtoToUser(UserDTO uDto){
-        User user= new User();
-        user.setId(uDto.getId());
-        user.setName(uDto.getName());;
-        user.setEmail(uDto.getEmail());
-        user.setPassword(uDto.getPassword());
-
+        User user= this.modelMapper.map(uDto,User.class);
         return user;
     }
 
     private UserDTO userToDto(User user){
-        UserDTO uDto = new UserDTO();
-        uDto.setId(user.getId());
-        uDto.setName(user.getName());
-        uDto.setEmail(user.getEmail());
-        uDto.setPassword(user.getPassword());
-
+        UserDTO uDto = this.modelMapper.map(user, UserDTO.class);
         return uDto;
     }
 }
