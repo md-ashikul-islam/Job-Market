@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PostDTO {
+    private Integer postId;
     private String profile;
     private String description;
 

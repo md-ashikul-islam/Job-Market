@@ -2,6 +2,7 @@ package com.ashik.jobmarket.services;
 
 import com.ashik.jobmarket.model.Post;
 import com.ashik.jobmarket.payloads.PostDTO;
+import com.ashik.jobmarket.payloads.PostResponse;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface PostService {
 
     void deletePost(Integer postId);
 
-    List<PostDTO> getAllPosts();
+    PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
     PostDTO getPostById(Integer Id);
 
