@@ -1,58 +1,32 @@
 package com.ashik.jobmarket.model;
 
 
-import java.util.Arrays;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name="JobPosts")
+@Getter@Setter
+@NoArgsConstructor
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer postId;
+    @Column(nullable = false, length = 100)
     private String profile;
-
-
+    @Column(nullable = false, length = 100)
     private String description;
+    @Column(nullable = false, length = 100)
     private int experience;
-    private String techs[];
+    @Column(nullable = false, length = 100)
+    private String techs;
 
-    public Post() {
-    }
+    @ManyToOne
+    private User user;
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "profile='" + profile + '\'' +
-                ", description='" + description + '\'' +
-                ", experience=" + experience +
-                ", techs=" + Arrays.toString(techs) +
-                '}';
-    }
-
-    public String getprofile() {
-        return profile;
-    }
-
-    public void setprofile(String profile) {
-        this.profile = profile;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getExperience() {
-        return experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public String[] getTechs() {
-        return techs;
-    }
-
-    public void setTechs(String[] techs) {
-        this.techs = techs;
-    }
 }

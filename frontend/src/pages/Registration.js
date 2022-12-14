@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import {signUp} from "../services/user-sevice"
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -18,68 +18,90 @@ import { getError } from '../utils';
 
 // const initial = { name: "", email: "", password: ""};
 function Registration() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if(password !== confirmPassword){
-      toast.error('Passwords do not match', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });;
-      return;
-    }
-    try{
-    const form ={name,email,password
-    }
-    fetch("http://localhost:8080/addUser", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => console.log(response))
-      .then((data) => {
-        console.log("Success:", data);
+  const [data,setData] = useState({
+    name:'',
+    email:'',
+    password:'',
+    confirmPassword:'',
+
+  })
+
+  const [error,setError] = useState({
+    errors:{},
+    isError:false
+  })
+
+
+  const handleChange=(e,property)=>{
+    setData({...data,[property]:e.target.value})
+  }
+
+  const submitForm=(e)=>{
+    e.preventDefault()
+  }
+
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
+  // const navigate = useNavigate();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if(password !== confirmPassword){
+  //     toast.error('Passwords do not match', {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       });;
+  //     return;
+  //   }
+  //   try{
+  //   const form ={name,email,password
+  //   }
+  //   fetch("http://localhost:6969/api/users/", {
+  //     method: "POST", // or 'PUT'
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(form),
+  //   })
+  //     .then((response) => console.log(response))
+  //     .then((data) => {
+  //       console.log("Success:", data);
         
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-      toast.success('👌 Registration Successful!', {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  //     toast.success('👌 Registration Successful!', {
+  //       position: "top-center",
+  //       autoClose: 1500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       });
       
-      setTimeout(() => {
-        navigate("/login")
-   }, 1600);
+  //     setTimeout(() => {
+  //       navigate("/login")
+  //  }, 1600);
       
-    }
-    catch(err){
-      toast.error(getError(err));
-    }
-  };
+  //   }
+  //   catch(err){
+  //     toast.error(getError(err));
+  //   }
+  // };
   return (
     <MDBContainer fluid>
 
-    <form autoComplete="off" onSubmit={handleSubmit}>
+    <form autoComplete="off" onSubmit={submitForm}>
           <MDBRow>
             <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
@@ -87,22 +109,22 @@ function Registration() {
 
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="user me-3" size='lg'/>
-                <MDBInput onChange={(e)=>setName(e.target.value)} label='Your Name' id='name' type='text' className='w-100'/>
+                <MDBInput onChange={(e)=>handleChange(e,'name')} value={data.name} label='Your Name' id='name' type='text' className='w-100'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="envelope me-3" size='lg'/>
-                <MDBInput onChange={(e)=>setEmail(e.target.value)} label='Your Email' id='email' type='email'/>
+                <MDBInput onChange={(e)=>handleChange(e,'email')} value={data.email} label='Your Email' id='email' type='email'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="lock me-3" size='lg'/>
-                <MDBInput onChange={(e)=>setPassword(e.target.value)} label='Password' id='password' type='password'/>
+                <MDBInput onChange={(e)=>handleChange(e,'password')} value={data.password} label='Password' id='password' type='password'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="key me-3" size='lg'/>
-                <MDBInput onChange={(e)=>setConfirmPassword(e.target.value)} label='Repeat your password' id='confirmPassword' type='password'/>
+                <MDBInput onChange={(e)=>handleChange(e,'confimPassword')} value={data.confirmPassword} label='Repeat your password' id='confirmPassword' type='password'/>
               </div>
 
               <div className='mb-4'>
