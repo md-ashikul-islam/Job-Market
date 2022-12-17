@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -23,6 +24,8 @@ public class Post {
     private String description;
     @Column(nullable = false, length = 100)
     private int experience;
+    @Column(nullable = false, length = 100)
+    private Date addedDate;
     @Column(nullable = false, length = 100)
     private String techs;
 

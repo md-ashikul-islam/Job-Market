@@ -60,7 +60,7 @@ public class AuthController {
             this.authenticationManager.authenticate(authenticationToken);
 
         } catch (BadCredentialsException e) {
-            System.out.println("Invalid Detials !!");
+            System.out.println("Invalid Details !!");
             throw new ApiException("Invalid username or password !!");
         }
 
@@ -76,13 +76,13 @@ public class AuthController {
 
     // get loggedin user data
     @Autowired
-    private UserRepository userRepo;
+    private UserRepository userRepository;
     @Autowired
     private ModelMapper mapper;
 
     @GetMapping("/current-user/")
     public ResponseEntity<UserDTO> getUser(Principal principal) {
-        User user = this.userRepo.findByEmail(principal.getName()).get();
+        User user = this.userRepository.findByEmail(principal.getName()).get();
         return new ResponseEntity<UserDTO>(this.mapper.map(user, UserDTO.class), HttpStatus.OK);
     }
 

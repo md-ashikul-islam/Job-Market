@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class PostServiceImpl implements PostService {
     public PostDTO createPost(PostDTO postDTO, Integer userId) {
         User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User","User Id",userId));
         Post post = this.modelMapper.map(postDTO,Post.class);
+        post.setAddedDate(new Date());
         post.setUser(user);
         Post newPost= this.postRepo.save(post);
 

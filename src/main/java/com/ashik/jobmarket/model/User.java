@@ -24,9 +24,9 @@ public class User implements UserDetails {
 
     @Column(nullable = false, length = 100)
     private String name;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private String email;
-    @Column(nullable = false, length = 10)
+
     private String password;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Post> posts = new ArrayList<>();
