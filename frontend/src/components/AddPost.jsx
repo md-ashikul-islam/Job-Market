@@ -14,7 +14,7 @@ const AddPost = () => {
         profile: '',
         description: '',
         experience:'',
-        tech: '',
+        techs: '',
         
     })
 
@@ -54,7 +54,7 @@ const AddPost = () => {
             toast.error("Experience is required !!")
             return
         }
-        if (post.tech.trim() === '') {
+        if (post.techs.trim() === '') {
             toast.error("Tech stack is required !!")
             return
         }
@@ -71,7 +71,7 @@ const AddPost = () => {
                 profile: '',
                 description: '',
                 experience:'',
-                tech: ''
+                techs: ''
             })
         }).catch((error) => {
             toast.error("Job Post not created due to some error !!")
@@ -113,12 +113,12 @@ const AddPost = () => {
                             />
                             </div>
                             <div className="my-3">
-                            <Label for="tech" >Tech Stack</Label>
+                            <Label for="techs" >Tech Stack</Label>
                             <Input
                                 type="textarea"
-                                id="tech"
+                                id="techs"
                                 placeholder="Enter here"
-                                Name="tech"
+                                Name="techs"
                                 onChange={fieldChanged}
                                 
                             />
