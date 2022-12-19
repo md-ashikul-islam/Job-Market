@@ -66,7 +66,7 @@ const PostPage = () => {
 
             <Container className="mt-4">
 
-                <Link to="/">Home</Link> / {post && (<Link to="" >  {post.title} </Link>)}
+                <Link to="/">Home</Link> / {post && (<Link to="" >  {post.profile} </Link>)}
 
                 <Row>
 
@@ -92,12 +92,9 @@ const PostPage = () => {
                                         }}></div>
 
                                         <CardText className="mt-3">
-                                            <h1>{post.title}</h1>
+                                            <h1>{post.profile}</h1>
                                         </CardText>
-                                        <div className="image-container  mt-4 shadow  " style={{ maxWidth: '50%' }}>
-                                            <img className="img-fluid" src={BASE_URL + '/post/image/' + post.imageName} alt="" />
-                                        </div>
-                                        <CardText className="mt-5" dangerouslySetInnerHTML={{ __html: post.content }}>
+                                        <CardText className="mt-5" dangerouslySetInnerHTML={{ __html: post.description }}>
 
                                         </CardText>
 

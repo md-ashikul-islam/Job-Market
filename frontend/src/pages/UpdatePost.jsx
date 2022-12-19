@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 import Base from '../components/Base'
 import userContext from '../context/userContext'
 import { loadPost, updatePost as doUpdatePost } from '../services/post-service'
-import { loadAllCategories } from '../services/category-service'
 import { Card, CardBody, Form, Input, Label, Button, Container } from "reactstrap"
 import JoditEditor from "jodit-react"
 import { useRef } from "react"
@@ -27,7 +26,7 @@ function UpdateBlog() {
         //load the blog from database
         loadPost(postId).then(data => {
             console.log(data)
-            setPost({ ...data, postId: data.post.postId })
+            setPost({ ...data})
         })
             .catch(error => {
                 console.log(error);
@@ -81,14 +80,14 @@ function UpdateBlog() {
                         <h3>Update post from here !!</h3>
                         <Form onSubmit={updatePost} >
                             <div className="my-3">
-                                <Label for="title" >Post title</Label>
+                                <Label for="profilee" >Post title</Label>
                                 <Input
                                     type="text"
                                     id="title"
                                     placeholder="Enter here"
                                     className="rounded-0"
                                     name="title"
-                                    value={post.title}
+                                    value={post.profile}
                                     onChange={(event) => handleChange(event, 'title')}
                                 />
                             </div>
@@ -105,41 +104,10 @@ function UpdateBlog() {
 
                                 <JoditEditor
                                     ref={editor}
-                                    value={post.content}
-                                    onChange={newContent => setPost({ ...post, content: newContent })}
+                                    value={post.description}
+                                    onChange={newDescription => setPost({ ...post, description: newDescription })}
                                 />
-                            </div>
-
-                            {/* file field  */}
-
-                            <div className="mt-3">
-                                <Label for="image">Select Post banner</Label>
-                                <Input id="image" type="file" onChange={''} />
-                            </div>
-
-
-
-
-                            <div className="my-3">
-                                <Label for="category" >Post Category</Label>
-                                <Input
-                                    type="select"
-                                    id="category"
-                                    placeholder="Enter here"
-                                    className="rounded-0"
-                                    name="categoryId"
-                                    onChange={(event) => handleChange(event, 'categoryId')}
-
-                                    value={post.categoryId}
-
-
-                                >
-
-                                    <option disabled value={0} >--Select category--</option>
-
-
-                                </Input>
-                            </div>
+                            </div>                   
 
 
 
